@@ -66,6 +66,36 @@ export default createSchema({
         }
       ], 
       
+    },
+    {
+      type: "document",
+      name: "InfoPage",
+      title: "InfoPage",
+      fields: [
+        {
+          title: "Info title",
+          name: "title",
+          type: "string"
+        },
+        {
+          type: "markdown",
+          description: "A Github flavored markdown field with image uploading",
+          name: "InfoPage"
+        },
+        {
+          title: 'Slug',
+          name: 'slug',
+          type: 'slug',
+          options: {
+            source: 'title',
+            maxLength: 200, // will be ignored if slugify is set
+            slugify: input => input
+                                 .toLowerCase()
+                                 .replace(/\s+/g, '-')
+                                 .slice(0, 200)
+          }
+        }
+      ]
     }
   ])
 })
